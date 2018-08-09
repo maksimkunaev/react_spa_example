@@ -6,6 +6,7 @@ const modulesPath = path.resolve(__dirname, './node_modules');
 const autoprefixer = require('autoprefixer')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production'
+const ComponentDirectoryPlugin = require("component-directory-webpack-plugin");
 
 module.exports = {
     devtool: 'source-map',
@@ -48,6 +49,10 @@ module.exports = {
                 ]
             }
         ]
+    },
+    resolve: {
+        plugins: [new ComponentDirectoryPlugin()],
+        extensions: ['.js', '.jsx'],
     },
     plugins: [
         new HtmlWebpackPlugin({
